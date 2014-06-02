@@ -15,4 +15,20 @@ class DefaultController extends Controller
     {
         return $this->render('IpezProductBundle:Default:create.html.twig');
     }
+    
+    public function readAction()
+    {
+        return $this->render('IpezProductBundle:Default:read.html.twig');
+    }
+    
+    public function updateAction()
+    {
+        return $this->render('IpezProductBundle:Default:update.html.twig');
+    }
+    
+    public function deleteAction()
+    {
+        return $this->render('IpezProductBundle:Default:delete.html.twig');
+    }
+    
 }
