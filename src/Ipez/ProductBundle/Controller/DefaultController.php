@@ -10,4 +10,9 @@ class DefaultController extends Controller
     {
         return $this->render('IpezProductBundle:Default:index.html.twig');
     }
+    
+    public function createAction()
+    {
+        return $this->render('IpezProductBundle:Default:create.html.twig');
+    }
 }

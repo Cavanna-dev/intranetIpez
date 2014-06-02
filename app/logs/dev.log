@@ -312,3 +312,7 @@
 [2014-06-02 14:57:04] security.NOTICE: It is recommended that you enable the "openssl" extension for random number generation. [] []
 [2014-06-02 14:57:07] event.DEBUG: Notified event "console.terminate" to listener "Symfony\Bridge\Monolog\Handler\ConsoleHandler::onTerminate". [] []
 [2014-06-02 14:57:07] event.DEBUG: Notified event "console.terminate" to listener "Symfony\Bundle\SwiftmailerBundle\EventListener\EmailSenderListener::onTerminate". [] []
+[2014-06-02 15:02:10] event.DEBUG: Notified event "console.command" to listener "Symfony\Bridge\Monolog\Handler\ConsoleHandler::onCommand". [] []
+[2014-06-02 15:02:11] security.NOTICE: It is recommended that you enable the "openssl" extension for random number generation. [] []
+[2014-06-02 15:02:15] event.DEBUG: Notified event "console.terminate" to listener "Symfony\Bridge\Monolog\Handler\ConsoleHandler::onTerminate". [] []
+[2014-06-02 15:02:15] event.DEBUG: Notified event "console.terminate" to listener "Symfony\Bundle\SwiftmailerBundle\EventListener\EmailSenderListener::onTerminate". [] []

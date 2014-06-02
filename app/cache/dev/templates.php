@@ -77,6 +77,7 @@
   'SwiftmailerBundle:Collector:swiftmailer.html.twig' => 'C:\\wamp\\www\\intranetIpez\\vendor\\symfony\\swiftmailer-bundle\\Symfony\\Bundle\\SwiftmailerBundle/Resources/views/Collector/swiftmailer.html.twig',
   'DoctrineBundle:Collector:db.html.twig' => 'C:\\wamp\\www\\intranetIpez\\vendor\\doctrine\\doctrine-bundle\\Doctrine\\Bundle\\DoctrineBundle/Resources/views/Collector/db.html.twig',
   'DoctrineBundle:Collector:explain.html.twig' => 'C:\\wamp\\www\\intranetIpez\\vendor\\doctrine\\doctrine-bundle\\Doctrine\\Bundle\\DoctrineBundle/Resources/views/Collector/explain.html.twig',
+  'IpezProductBundle:Default:create.html.twig' => 'C:\\wamp\\www\\intranetIpez\\src\\Ipez\\ProductBundle/Resources/views/Default/create.html.twig',
   'IpezProductBundle:Default:index.html.twig' => 'C:\\wamp\\www\\intranetIpez\\src\\Ipez\\ProductBundle/Resources/views/Default/index.html.twig',
   'WebProfilerBundle:Collector:config.html.twig' => 'C:\\wamp\\www\\intranetIpez\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views/Collector/config.html.twig',
   'WebProfilerBundle:Collector:events.html.twig' => 'C:\\wamp\\www\\intranetIpez\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views/Collector/events.html.twig',
