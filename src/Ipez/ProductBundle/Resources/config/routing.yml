@@ -1,3 +1,19 @@
 ipez_product_homepage:
     pattern:  /product
     defaults: { _controller: IpezProductBundle:Default:index }
+    
+ipez_product_create:
+    pattern:  /product/new
+    defaults: { _controller: IpezProductBundle:Default:create }
+    
+ipez_product_read:
+    pattern:  /product/{id}
+    defaults: { _controller: IpezProductBundle:Default:read }
+
+ipez_product_update:
+    pattern:  /product/{id}
+    defaults: { _controller: IpezProductBundle:Default:update }
+
+ipez_product_delete:
+    pattern:  /product/{id}
+    defaults: { _controller: IpezProductBundle:Default:delete }

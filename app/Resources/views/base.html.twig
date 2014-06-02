@@ -2,12 +2,23 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+        <title>{% block title %}{% endblock %} - IPEZ</title>
+		{% block stylesheets %}{% endblock %}
+		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+                <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+		<link rel="stylesheet" href="{{ asset('css/multi-select.css') }}" />
+	</head>
+	<body>
+		{% include '::menu.html.twig' %}
+		<div class="container">
+			{% block body %}{% endblock %}
+                        {% include '::footer.html.twig' %}
+		</div>
+           
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="{{ asset('js/jquery.multi-select.js') }}"></script>
+	<script src="{{ asset('js/custom.js') }}"></script>
+	{% block javascripts %}{% endblock %}
+	</body>
 </html>
