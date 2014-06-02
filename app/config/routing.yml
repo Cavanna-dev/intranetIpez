@@ -1,0 +1,4 @@
+ipez_product:
+    resource: "@IpezProductBundle/Resources/config/routing.yml"
+    prefix:   /
+

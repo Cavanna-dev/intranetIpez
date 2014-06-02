@@ -1,0 +1,3 @@
+ipez_product_homepage:
+    pattern:  /product
+    defaults: { _controller: IpezProductBundle:Default:index }
