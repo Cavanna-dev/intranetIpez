@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Feature
 {
+
     /**
      * @var integer
      * @ORM\Id
@@ -29,6 +30,11 @@ class Feature
      */
     private $value;
 
+    /**
+     * @var integer
+     * @ORM\Column(type="integer")
+     */
+    protected $productId;
 
     /**
      * Get id
@@ -84,5 +90,30 @@ class Feature
     public function getValue()
     {
         return $this->value;
+    }
+
+    
+
+    /**
+     * Set value
+     *
+     * @param string $value
+     * @return Feature
+     */
+    public function setProductId($productId)
+    {
+        $this->productId = $productId;
+
+        return $this;
+    }
+
+    /**
+     * Get value
+     *
+     * @return string 
+     */
+    public function getProductId()
+    {
+        return $this->productId;
     }
 }

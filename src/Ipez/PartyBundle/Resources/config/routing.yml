@@ -1,0 +1,3 @@
+ipez_party_homepage:
+    pattern:  /party
+    defaults: { _controller: IpezPartyBundle:Default:index }

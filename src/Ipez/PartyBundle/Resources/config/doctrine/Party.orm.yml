@@ -1,0 +1,25 @@
+Ipez\PartyBundle\Entity\Party:
+    type: entity
+    table: null
+    repositoryClass: Ipez\PartyBundle\Entity\PartyRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '90'
+        address:
+            type: string
+            length: '155'
+        town:
+            type: string
+            length: '90'
+        postal:
+            type: integer
+        date:
+            type: date
+    lifecycleCallbacks: {  }

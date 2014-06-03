@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Ipez\ProductBundle\IpezProductBundle(),
             new Ipez\CustomerBundle\IpezCustomerBundle(),
+            new Ipez\PartyBundle\IpezPartyBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

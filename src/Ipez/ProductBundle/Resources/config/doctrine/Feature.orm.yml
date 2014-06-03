@@ -15,4 +15,6 @@ Ipez\ProductBundle\Entity\Feature:
         value:
             type: string
             length: 255
+        productId:
+            type: integer
     lifecycleCallbacks: {  }
