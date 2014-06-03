@@ -7,13 +7,13 @@ ipez_product_create:
     defaults: { _controller: IpezProductBundle:Default:create }
     
 ipez_product_read:
-    pattern:  /product/{id}
+    pattern:  /product/read/{id}
     defaults: { _controller: IpezProductBundle:Default:read }
 
 ipez_product_update:
-    pattern:  /product/{id}
+    pattern:  /product/update/{id}
     defaults: { _controller: IpezProductBundle:Default:update }
 
 ipez_product_delete:
-    pattern:  /product/{id}
+    pattern:  /product/delete/{id}
     defaults: { _controller: IpezProductBundle:Default:delete }

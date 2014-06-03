@@ -3,6 +3,9 @@
 namespace Ipez\ProductBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+use Ipez\ProductBundle\Entity\Product;
+
 use Doctrine\ORM;
 
 class DefaultController extends Controller
@@ -29,54 +32,37 @@ class DefaultController extends Controller
 
     public function createAction()
     {
-        /*$product = new Product();
-        $form = $this->createForm(new SurveyType(), $survey);
-
-        $strenghs = $this->getDoctrine()
-                ->getRepository('IPMotorsStrenghsBundle:Strenghs')
-                ->findAll();
-
-
-        $emailings = $this->getDoctrine()
-                ->getRepository('IPMotorsMailBundle:Mail')
-                ->findAll();
+        $product = new Product();
 
         $request = $this->getRequest();
 
         if ($request->getMethod() == 'POST')
         {
-            if ($this->get('request')->get('survey_name') !== null &&
-                    $this->get('request')->get('actualVehiculName') !== null &&
-                    $this->get('request')->get('futurVehiculName') !== null)
+            if ($this->get('request')->get('reference') !== null &&
+                    $this->get('request')->get('tradeName') !== null &&
+                    $this->get('request')->get('cI') !== null)
             {
 
-                $actualVehiculStrenghs = implode($this->get('request')->get('actual_strenghs_survey', array()), ':');
-                $futurVehiculStrenghs = implode($this->get('request')->get('futur_strenghs_survey', array()), ':');
-
-                $survey->setName($this->get('request')->get('survey_name'))
-                        ->setActualVehiculName($this->get('request')->get('actualVehiculName'))
-                        ->setActualVehiculStrenghs($actualVehiculStrenghs)
-                        ->setFuturVehiculName($this->get('request')->get('futurVehiculName'))
-                        ->setFuturVehiculStrenghs($futurVehiculStrenghs)
-                        ->setMailId($this->get('request')->get('emailing_survey'))
-                        ->setActivated(FALSE)
-                        ->setDate(new \DateTime());
+                $productCaract = implode($this->get('request')->get('productCaract', array()), ':');
+               
+                $product->setReference($this->get('request')->get('reference'))
+                        ->setTradeName($this->get('request')->get('tradeName'))
+                        ->setCI($this->get('request')->get('cI'));
 
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($survey);
+                $em->persist($product);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('ip_motors_form_edit_homepage'));
+                return $this->redirect($this->generateUrl('ipez_product_homepage'));
             }
         }
 
-        if (!$survey)
+        if (!$product)
         {
-            return $this->redirect($this->generateUrl('ip_motors_form_edit_homepage'));
+            return $this->redirect($this->generateUrl('ipez_product_homepage'));
         }
-*/
+        
         return $this->render('IpezProductBundle:Default:create.html.twig', array(
-               // 'form' => $form->createView(),
         ));
     }
 

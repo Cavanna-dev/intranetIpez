@@ -1,0 +1,18 @@
+Ipez\ProductBundle\Entity\Feature:
+    type: entity
+    table: null
+    repositoryClass: Ipez\ProductBundle\Entity\FeatureRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nameFeature:
+            type: string
+            length: '45'
+        value:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
