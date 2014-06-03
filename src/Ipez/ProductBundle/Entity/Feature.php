@@ -11,16 +11,21 @@ class Feature
 {
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=45)
      */
     private $nameFeature;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=45)
      */
     private $value;
 

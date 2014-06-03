@@ -1,5 +1,34 @@
 {% extends "::base.html.twig" %}
+{% block title %}Modification Produit - Module Produit{% endblock %}
 
 {% block body %}
-Fichier create:Product
+<form action="{{ path('ipez_product_update', {'id': product.id}) }}" method="post" class="form-horizontal jumbotron">
+    <fieldset>
+        <legend><h2>Ajout Nouvel Caractéristique</h2></legend>
+        <div class="form-group">
+            <label for="inputReference" class="col-lg-2 control-label">Référence Produit</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" name ="reference" id="Reference" placeholder="Reference" value="{{product.reference}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputTradeName" class="col-lg-2 control-label">Nom Commercial Produit</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" name="tradeName" id="inputTradeName" placeholder="Nom Commercial" value="{{product.tradeName}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputCI" class="col-lg-2 control-label">Stock Produit</label>
+            <div class="col-lg-2">
+                <input type="text" class="form-control" name="cI" id="inputCI" placeholder="Stock" value="{{product.cI}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button class="btn btn-default">Annuler</button>
+                <button type="submit" class="btn btn-primary">Modifier</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
 {% endblock %}

@@ -6,10 +6,6 @@ ipez_product_create:
     pattern:  /product/new
     defaults: { _controller: IpezProductBundle:Default:create }
     
-ipez_product_add_feature:
-    pattern:  /product/add/feature/{id}
-    defaults: { _controller: IpezProductBundle:Default:addFeature }
-    
 ipez_product_read:
     pattern:  /product/read/{id}
     defaults: { _controller: IpezProductBundle:Default:read }
@@ -21,3 +17,11 @@ ipez_product_update:
 ipez_product_delete:
     pattern:  /product/delete/{id}
     defaults: { _controller: IpezProductBundle:Default:delete }
+    
+ipez_product_add_feature:
+    pattern:  /product/add/feature/{id}
+    defaults: { _controller: IpezProductBundle:Default:addFeature }
+    
+ipez_product_del_feature:
+    pattern:  /product/del/feature/{id}
+    defaults: { _controller: IpezProductBundle:Default:delFeature }

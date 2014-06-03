@@ -43,9 +43,7 @@ class DefaultController extends Controller
                     $this->get('request')->get('tradeName') !== null &&
                     $this->get('request')->get('cI') !== null)
             {
-
-                $productCaract = implode($this->get('request')->get('productCaract', array()), ':');
-               
+                
                 $product->setReference($this->get('request')->get('reference'))
                         ->setTradeName($this->get('request')->get('tradeName'))
                         ->setCI($this->get('request')->get('cI'));
@@ -66,30 +64,87 @@ class DefaultController extends Controller
         return $this->render('IpezProductBundle:Default:create.html.twig', array(
         ));
     }
+    
+    public function readAction()
+    {
+        return $this->render('IpezProductBundle:Default:read.html.twig');
+    }
+
+    public function updateAction($id)
+    {
+        $product = array();
+        try {
+            $product = $this->getDoctrine()
+                             ->getRepository('IpezProductBundle:Product')
+                             ->find($id);
+            
+        } catch (ORM\NoResultException $e) {
+            return $this->render('IpezProductBundle:Default:update.html.twig', array(
+                    'product' => $product
+            ));
+        }
+        
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST')
+        {
+            if ($this->get('request')->get('reference') !== null &&
+                    $this->get('request')->get('tradeName') !== null &&
+                    $this->get('request')->get('cI') !== null)
+            {
+                
+                $product->setReference($this->get('request')->get('reference'))
+                        ->setTradeName($this->get('request')->get('tradeName'))
+                        ->setCI($this->get('request')->get('cI'));
+
+                $em = $this->getDoctrine()->getManager();
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('ipez_product_homepage'));
+            }
+        }
+        
+        return $this->render('IpezProductBundle:Default:update.html.twig', array(
+                    'product' => $product
+            ));
+    }
+
+    public function deleteAction($id)
+    {
+        try {
+            $product = $this->getDoctrine()
+                             ->getRepository('IpezProductBundle:Product')
+                             ->find($id);
+            
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($product);
+            $em->flush();
+        
+        } catch (ORM\NoResultException $ex) {
+            echo "alert('Aucun produit trouvé')";
+            return $this->redirect($this->generateUrl('ipez_product_homepage'));
+        }
+        
+        return $this->redirect($this->generateUrl('ipez_product_homepage'));
+    }
 
     public function addFeatureAction($id)
     {
         $feature = new Feature();
         
-        $products = array();
-        try {
-            $products = $this->getDoctrine()
-                             ->getRepository('IpezProductBundle:Product')
-                             ->find($id);
-        } catch (ORM\NoResultException $e) {
-            return $this->render('IpezProductBundle:Default:index.html.twig', array(
-                    'products' => $products
-            ));
-        }
-        
+        $product = array();
         $features = array();
         try {
+            $product = $this->getDoctrine()
+                             ->getRepository('IpezProductBundle:Product')
+                             ->find($id);
+            
             $features = $this->getDoctrine()
                              ->getRepository('IpezProductBundle:Feature')
                              ->findAll();
         } catch (ORM\NoResultException $e) {
             return $this->render('IpezProductBundle:Default:index.html.twig', array(
-                    'products' => $products
+                    'product' => $product,
+                    'features' => $features,
             ));
         }
         
@@ -107,43 +162,66 @@ class DefaultController extends Controller
                 $em->persist($feature);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('ipez_product_homepage'));
+                return $this->render(
+                        'IpezProductBundle:Default:add_feature.html.twig', 
+                        array(
+                            'id' => $id,
+                            'product' => $product,
+                            'features' => $features
+                        )
+                );
             }
         }
         
         return $this->render('IpezProductBundle:Default:add_feature.html.twig', array(
-            'product' => $products,
-            '' => $feature
+            'product' => $product,
+            'features' => $features
         ));
     }
     
-    public function readAction()
+    public function delFeatureAction($id)
     {
-        return $this->render('IpezProductBundle:Default:read.html.twig');
-    }
-
-    public function updateAction()
-    {
-        return $this->render('IpezProductBundle:Default:update.html.twig');
-    }
-
-    public function deleteAction($id)
-    {
+        $feature = new Feature();
+        
+        $product = array();
+        $features = array();
         try {
-            $product = $products = $this->getDoctrine()
-                                    ->getRepository('IpezProductBundle:Product')
-                                    ->find($id);
+            $product = $this->getDoctrine()
+                             ->getRepository('IpezProductBundle:Product')
+                             ->find($request = $this->getRequest()->get('idProduct'));
+            
+            $features = $this->getDoctrine()
+                             ->getRepository('IpezProductBundle:Feature')
+                             ->findAll();
+        } catch (ORM\NoResultException $e) {
+            return $this->render('IpezProductBundle:Default:index.html.twig', array(
+                    'product' => $product,
+                    'features' => $features,
+            ));
+        }
+        
+        try {
+            $feature = $this->getDoctrine()
+                            ->getRepository('IpezProductBundle:Feature')
+                            ->find($id);
             
             $em = $this->getDoctrine()->getManager();
-            $em->remove($product);
+            $em->remove($feature);
             $em->flush();
         
         } catch (ORM\NoResultException $ex) {
-            echo "alert('Aucun produit trouvé')";
-            return $this->redirect($this->generateUrl('ipez_product_homepage'));
+            echo "alert('Aucune caractéristique trouvée')";
+            return $this->render('IpezProductBundle:Default:add_feature.html.twig', array(
+                'id' => $request = $this->getRequest()->get('idProduct'),
+                'product' => $product,
+                'features' => $features
+            ));
         }
         
-        return $this->redirect($this->generateUrl('ipez_product_homepage'));
+        return $this->forward('IpezProductBundle:Default:addFeature', array(
+                'id'  => $request = $this->getRequest()->get('idProduct'),
+                'product' => $product,
+                'features' => $features
+    ));
     }
-
 }
