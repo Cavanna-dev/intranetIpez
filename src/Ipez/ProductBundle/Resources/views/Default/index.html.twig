@@ -18,7 +18,10 @@
             <td>{{ object.tradeName}}</td>
             <td>{{ object.reference}}</td>
             <td>{{ object.cI}}</td>
-            <td><a href="{{ path('ipez_product_update', {'id': object.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a> 
+            <td><a href="{{ path('ipez_product_update', {'id': object.id}) }}">
+                    <span class="glyphicon glyphicon-pencil"></span></a> 
+                <a href="{{ path('ipez_product_add_feature', {'id': object.id}) }}">
+                    <span class="glyphicon glyphicon-edit"></span></a> 
                 <a href="{{ path('ipez_product_delete', {'id': object.id}) }}" 
                    onclick="return(confirm('Etes-vous sûr de vouloir supprimer ce produit?'));">
                     <span class="glyphicon glyphicon-trash"></span></a>

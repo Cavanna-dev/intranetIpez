@@ -1,10 +1,10 @@
 {% extends "::base.html.twig" %}
-{% block title %}Creation Client - Module Client{% endblock %}
+{% block title %}Creation Produit - Module Produit{% endblock %}
 
 {% block body %}
 <form action="{{ path('ipez_product_create') }}" method="post" class="form-horizontal jumbotron">
     <fieldset>
-        <legend><h2>Ajout Nouveau Client</h2></legend>
+        <legend><h2>Ajout Nouveau Produit</h2></legend>
         <div class="form-group">
             <label for="inputReference" class="col-lg-2 control-label">Référence Produit</label>
             <div class="col-lg-10">
@@ -21,14 +21,6 @@
             <label for="inputCI" class="col-lg-2 control-label">Stock Produit</label>
             <div class="col-lg-2">
                 <input type="text" class="form-control" name="cI" id="inputCI" placeholder="Stock">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="mySelect" class="col-lg-2 control-label">Caractéristiques Produits</label>
-            <div class="col-lg-5">
-                <select name="productCaract" id='mySelect' multiple='multiple'>
-                    <option value='elem_1'>elem 1</option>
-                </select>
             </div>
         </div>
         <div class="form-group">

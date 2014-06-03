@@ -1,0 +1,59 @@
+{% extends "::base.html.twig" %}
+{% block title %}Creation Caractéristiques Produits - Module Produit{% endblock %}
+
+{% block body %}
+<form action="{{ path('ipez_product_create') }}" method="post" class="form-horizontal jumbotron">
+    <fieldset>
+        <legend><h2>Ajout Nouvel Caractéristique</h2></legend>
+        <div class="form-group">
+            <label for="inputReference" class="col-lg-2 control-label">Référence Produit</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" disabled name ="reference" id="Reference" placeholder="Reference" value="{{product.reference}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputTradeName" class="col-lg-2 control-label">Nom Commercial Produit</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" disabled name="tradeName" id="inputTradeName" placeholder="Nom Commercial" value="{{product.tradeName}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputCI" class="col-lg-2 control-label">Stock Produit</label>
+            <div class="col-lg-2">
+                <input type="text" class="form-control" disabled name="cI" id="inputCI" placeholder="Stock" value="{{product.cI}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nom Caractéristique</th>
+                        <th>Valeur</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for object in products %}
+                    <tr>
+                        <td>{{ object.nameFeature }}</td>
+                        <td>{{ object.value }}</td>
+                        <td><a href="#">
+                                <span class="glyphicon glyphicon-pencil"></span></a> 
+                            <a  href="#" 
+                                onclick="return(confirm('Etes-vous sûr de vouloir supprimer ce produit?'));">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td><input type="text" class="form-control" name="featureName" id="inputFeatureName" placeholder="Nom Caractéristique"></td>
+                        <td><input type="text" class="form-control" name="featureValue" id="inputFeatureValue" placeholder="Valeur Caractéristique"></td>
+                        <td><button type="submit" class="btn btn-primary">Ajouter</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}

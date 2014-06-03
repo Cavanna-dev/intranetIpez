@@ -5,6 +5,7 @@ namespace Ipez\ProductBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Ipez\ProductBundle\Entity\Product;
+use Ipez\ProductBundle\Entity\Feature;
 
 use Doctrine\ORM;
 
@@ -66,6 +67,56 @@ class DefaultController extends Controller
         ));
     }
 
+    public function addFeatureAction($id)
+    {
+        $feature = new Feature();
+        
+        $products = array();
+        try {
+            $products = $this->getDoctrine()
+                             ->getRepository('IpezProductBundle:Product')
+                             ->find($id);
+        } catch (ORM\NoResultException $e) {
+            return $this->render('IpezProductBundle:Default:index.html.twig', array(
+                    'products' => $products
+            ));
+        }
+        
+        $features = array();
+        try {
+            $features = $this->getDoctrine()
+                             ->getRepository('IpezProductBundle:Feature')
+                             ->findAll();
+        } catch (ORM\NoResultException $e) {
+            return $this->render('IpezProductBundle:Default:index.html.twig', array(
+                    'products' => $products
+            ));
+        }
+        
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST')
+        {
+            if ($this->get('request')->get('featureName') !== null &&
+                    $this->get('request')->get('featureValue') !== null)
+            {
+               
+                $feature->setNameFeature($this->get('request')->get('featureName'))
+                        ->setValue($this->get('request')->get('featureValue'));
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($feature);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('ipez_product_homepage'));
+            }
+        }
+        
+        return $this->render('IpezProductBundle:Default:add_feature.html.twig', array(
+            'product' => $products,
+            '' => $feature
+        ));
+    }
+    
     public function readAction()
     {
         return $this->render('IpezProductBundle:Default:read.html.twig');
