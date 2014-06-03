@@ -8,14 +8,16 @@
         <tr>
             <th>Nom Evenement</th>
             <th>Lieu</th>
+            <th>Nombre Demande</th>
             <th>Participant</th>
             <th>Date</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-            
+
         <tr>
+            <td>aze</td>
             <td>aze</td>
             <td>aze</td>
             <td>aze</td>
@@ -25,8 +27,11 @@
                 <a href="#">
                     <span class="glyphicon glyphicon-edit"></span></a> 
                 <a href="#" 
+                   onclick="return(confirm('Etes-vous sûr de vouloir lancer les invitations?'));">
+                    <span class="glyphicon glyphicon-envelope"></span></a>
+                <a href="#" 
                    onclick="return(confirm('Etes-vous sûr de vouloir supprimer ce produit?'));">
-                    <span class="glyphicon glyphicon-trash"></span></a>
+                    <span class="glyphicon glyphicon-trash"></span></a> 
             </td>
         </tr>
     </tbody>

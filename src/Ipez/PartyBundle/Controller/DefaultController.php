@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
+
     public function indexAction()
     {
         $parties = array();
@@ -19,8 +20,9 @@ class DefaultController extends Controller
             ));
         }
 
-        return $this->render('IpezProductBundle:Default:index.html.twig', array(
-                    'products' => $products
+        return $this->render('IpezPartyBundle:Default:index.html.twig', array(
+                    'parties' => $parties
         ));
     }
+
 }

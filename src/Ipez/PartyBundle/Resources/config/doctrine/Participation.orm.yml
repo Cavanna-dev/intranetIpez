@@ -1,0 +1,18 @@
+Ipez\PartyBundle\Entity\Participation:
+    type: entity
+    table: null
+    repositoryClass: Ipez\PartyBundle\Entity\ParticipationRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        confirm:
+            type: boolean
+        dateInvit:
+            type: date
+        dateConfirm:
+            type: date
+    lifecycleCallbacks: {  }
