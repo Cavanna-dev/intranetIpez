@@ -29,7 +29,7 @@
             <td>{{ object.address}}</td>
             <td>{{ object.town}}</td>
             <td>{{ object.cp}}</td>
-            <td>{{ object.dateBirth | date('d/m/y')}}</td>
+            <td>{{ object.dateBirth | date('d/m/Y')}}</td>
             <td><a href="{{ path('ipez_customer_update', {'id': object.id}) }}">
                     <span class="glyphicon glyphicon-pencil"></span></a> 
                 <a href="{{ path('ipez_customer_delete', {'id': object.id}) }}" 

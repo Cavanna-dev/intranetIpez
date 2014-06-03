@@ -1,0 +1,78 @@
+{% extends "::base.html.twig" %}
+{% block title %}Modification Client - Module Client{% endblock %}
+
+{% block body %}
+<form action="{{ path('ipez_customer_update', {'id': customer.id}) }}" method="post" class="form-horizontal jumbotron">
+    <fieldset>
+        <legend><h2>Modification Client</h2></legend>
+        <div class="form-group">
+            <label for="inputName" class="col-lg-2 control-label">Nom</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" name ="name" id="Name" value="{{customer.name}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputFirstName" class="col-lg-2 control-label">Prénom</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" name="firstName" id="inputFirstName" value="{{customer.firstName}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputMail" class="col-lg-2 control-label">Mail</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" name="mail" id="inputMail" value="{{customer.mail}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputNumber" class="col-lg-2 control-label">Téléphone Fixe</label>
+            <div class="col-lg-2">
+                <input type="text" class="form-control" name="number" id="inputNumber" value="{{customer.number}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputNumberGsm" class="col-lg-2 control-label">Téléphone Mobile</label>
+            <div class="col-lg-2">
+                <input type="text" class="form-control" name="numberGsm" id="inputNumberGsm" value="{{customer.numberGsm}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress" class="col-lg-2 control-label">Adresse</label>
+            <div class="col-lg-8">
+                <input type="text" class="form-control" name="address" id="inputAddress" value="{{customer.address}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputTown" class="col-lg-2 control-label">Ville</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" name="town" id="inputTown" value="{{customer.town}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputCp" class="col-lg-2 control-label">Code Postal</label>
+            <div class="col-lg-2">
+                <input type="text" class="form-control" name="cp" id="inputCp" value="{{customer.cp}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputDateBirth" class="col-lg-2 control-label">Date de Naissance</label>
+            <div class="col-lg-2">
+                <input type="text" class="form-control" name="dateBirth" id="datePicker" 
+                id="inputDateBirth" value="{{customer.dateBirth | date('d/m/Y')}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputIsActive" class="col-lg-2 control-label">Actif</label>
+            <div class="col-lg-1">
+                <input type="text" class="form-control" name="isActive" id="inputIsActive" value="{{customer.isActive}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button class="btn btn-default">Annuler</button>
+                <button type="submit" class="btn btn-primary">Modifier</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<script> $("#datePicker").datepicker();</script>
+{% endblock %}

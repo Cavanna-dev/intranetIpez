@@ -29,9 +29,58 @@ class DefaultController extends Controller
         ));
     }
     
-        public function updateAction()
+    public function updateAction($id)
     {
-        return $this->render('IpezProductBundle:Default:update.html.twig');
+        $customer = array();
+        try {
+            $customer = $this->getDoctrine()
+                             ->getRepository('IpezCustomerBundle:Customer')
+                             ->find($id);
+            
+        } catch (ORM\NoResultException $e) {
+            return $this->render('IpezCustomerBundle:Default:update.html.twig', array(
+                    'customer' => $customer
+            ));
+        }
+        
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST')
+        {
+            if ($this->get('request')->get('name') !== null &&
+                    $this->get('request')->get('firstName') !== null &&
+                    $this->get('request')->get('mail') !== null &&
+                    $this->get('request')->get('number') !== null &&
+                    $this->get('request')->get('numberGsm') !== null &&
+                    $this->get('request')->get('address') !== null &&
+                    $this->get('request')->get('town') !== null &&
+                    $this->get('request')->get('cp') !== null &&
+                    $this->get('request')->get('dateBirth') !== null &&
+                    $this->get('request')->get('isActive') !== null)
+            {
+                $date = explode('/', $this->get('request')->get('dateBirth'));
+                $get = $date[1].'/'.$date[0].'/'.$date[2];
+
+                $customer->setName($this->get('request')->get('name'))
+                        ->setFirstName($this->get('request')->get('firstName'))
+                        ->setMail($this->get('request')->get('mail'))
+                        ->setNumber($this->get('request')->get('number'))
+                        ->setNumberGsm($this->get('request')->get('numberGsm'))
+                        ->setAddress($this->get('request')->get('address'))                                
+                        ->setTown($this->get('request')->get('town'))
+                        ->setCp($this->get('request')->get('cp'))
+                        ->setDateBirth(new \DateTime($get))
+                        ->setIsActive($this->get('request')->get('isActive'));
+
+                $em = $this->getDoctrine()->getManager();
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('ipez_customer_homepage'));
+            }
+        }
+        
+        return $this->render('IpezCustomerBundle:Default:update.html.twig', array(
+                    'customer' => $customer
+            ));
     }
 
     public function deleteAction($id)
