@@ -1,0 +1,43 @@
+{% extends "::base.html.twig" %}
+{% block title %}Module Client{% endblock %}
+
+{% block body %}
+<h2>Les Clients</h2>
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Mail</th>
+            <th>Téléphone Fixe</th>
+            <th>Téléphone Mobile</th>
+            <th>Adresse</th>
+            <th>Ville</th>
+            <th>Code Postal</th>
+            <th>Date de naissance</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+            {% for object in customers %}
+        <tr>
+            <td>{{ object.name}}</td>
+            <td>{{ object.firstName}}</td>
+            <td>{{ object.mail}}</td>
+            <td>{{ object.number}}</td>
+            <td>{{ object.numberGsm}}</td>
+            <td>{{ object.address}}</td>
+            <td>{{ object.town}}</td>
+            <td>{{ object.cp}}</td>
+            <td>{{ object.dateBirth | date('d/m/y')}}</td>
+            <td><a href="{{ path('ipez_customer_update', {'id': object.id}) }}">
+                    <span class="glyphicon glyphicon-pencil"></span></a> 
+                <a href="{{ path('ipez_customer_delete', {'id': object.id}) }}" 
+                   onclick="return(confirm('Etes-vous sûr de vouloir supprimer ce client ?'));">
+                    <span class="glyphicon glyphicon-trash"></span></a>
+            </td>
+        </tr>
+            {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

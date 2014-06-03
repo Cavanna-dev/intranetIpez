@@ -1,3 +1,7 @@
+ipez_customer:
+    resource: "@IpezCustomerBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ipez_product:
     resource: "@IpezProductBundle/Resources/config/routing.yml"
     prefix:   /

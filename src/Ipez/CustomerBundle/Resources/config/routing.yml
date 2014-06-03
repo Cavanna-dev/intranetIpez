@@ -1,0 +1,19 @@
+ipez_customer_homepage:
+    pattern:  /customer
+    defaults: { _controller: IpezCustomerBundle:Default:index }
+    
+ipez_customer_create:
+    pattern:  /customer/new
+    defaults: { _controller: IpezCustomerBundle:Default:create }
+    
+ipez_customer_read:
+    pattern:  /customer/read/{id}
+    defaults: { _controller: IpezCustomerBundle:Default:read }
+
+ipez_customer_update:
+    pattern:  /customer/update/{id}
+    defaults: { _controller: IpezCustomerBundle:Default:update }
+
+ipez_customer_delete:
+    pattern:  /customer/delete/{id}
+    defaults: { _controller: IpezCustomerBundle:Default:delete }

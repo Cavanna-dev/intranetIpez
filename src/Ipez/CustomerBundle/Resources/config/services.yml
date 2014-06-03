@@ -1,0 +1,7 @@
+parameters:
+#    ipez_customer.example.class: Ipez\CustomerBundle\Example
+
+services:
+#    ipez_customer.example:
+#        class: %ipez_customer.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

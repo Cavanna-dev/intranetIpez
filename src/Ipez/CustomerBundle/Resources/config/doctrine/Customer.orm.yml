@@ -1,0 +1,39 @@
+Ipez\CustomerBundle\Entity\Customer:
+    type: entity
+    table: null
+    repositoryClass: Ipez\CustomerBundle\Entity\CustomerRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '90'
+        firstName:
+            type: string
+            length: '90'
+        mail:
+            type: string
+            length: '145'
+        number:
+            type: string
+            length: '12'
+        numberGsm:
+            type: string
+            length: '12'
+        address:
+            type: string
+            length: '145'
+        town:
+            type: string
+            length: '90'
+        cp:
+            type: integer
+        dateBirth:
+            type: date
+        isActive:
+            type: boolean
+    lifecycleCallbacks: {  }
