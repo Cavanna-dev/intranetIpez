@@ -32,7 +32,7 @@ class Party
     /**
      * @var integer
      */
-    private $postal;
+    private $cp;
 
     /**
      * @var \DateTime

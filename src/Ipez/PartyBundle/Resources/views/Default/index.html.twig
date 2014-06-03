@@ -15,13 +15,13 @@
         </tr>
     </thead>
     <tbody>
-
+        {% for object in parties %}
         <tr>
-            <td>aze</td>
-            <td>aze</td>
-            <td>aze</td>
-            <td>aze</td>
-            <td>aze</td>
+            <td>{{ object.name }}</td>
+            <td>{{ object.town }}</td>
+            <td>50</td>
+            <td>100</td>
+            <td>{{ object.date | date('d/m/Y') }}</td>
             <td><a href="#">
                     <span class="glyphicon glyphicon-pencil"></span></a> 
                 <a href="#">
@@ -34,6 +34,7 @@
                     <span class="glyphicon glyphicon-trash"></span></a> 
             </td>
         </tr>
+        {% endfor %}
     </tbody>
 </table>
 {% endblock %}

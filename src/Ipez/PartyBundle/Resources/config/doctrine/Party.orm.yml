@@ -18,7 +18,7 @@ Ipez\PartyBundle\Entity\Party:
         town:
             type: string
             length: '90'
-        postal:
+        cp:
             type: integer
         date:
             type: date
