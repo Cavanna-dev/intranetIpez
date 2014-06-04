@@ -4,7 +4,7 @@
 {% block body %}
 <form action="{{ path('ipez_product_update', {'id': product.id}) }}" method="post" class="form-horizontal jumbotron">
     <fieldset>
-        <legend><h2>Ajout Nouvel Caractéristique</h2></legend>
+        <legend><h2>Modification Produit</h2></legend>
         <div class="form-group">
             <label for="inputReference" class="col-lg-2 control-label">Référence Produit</label>
             <div class="col-lg-10">
@@ -21,6 +21,20 @@
             <label for="inputCI" class="col-lg-2 control-label">Stock Produit</label>
             <div class="col-lg-2">
                 <input type="text" class="form-control" name="cI" id="inputCI" placeholder="Stock" value="{{product.cI}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputType" class="col-lg-2 control-label">Catégorie Produit</label>
+            <div class="col-lg-2">
+                <select id="inputType" class="form-control" name="type">
+                    {% for object in types %}
+                        {% if ( object.id == product.type) %}
+                             <option SELECTED value="{{ object.id }}">{{ object.name }}</option>
+                        {% else %}
+                             <option value="{{ object.id }}">{{ object.name }}</option>
+                        {% endif %}  
+                    {% endfor %}
+                </select>
             </div>
         </div>
         <div class="form-group">

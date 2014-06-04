@@ -8,7 +8,8 @@
         <tr>
             <th>Nom Commercial</th>
             <th>Référence</th>
-            <th>Stock</th>
+            <th>Catégorie</th>
+            <th>Stock</th>            
             <th>Action</th>
         </tr>
     </thead>
@@ -17,6 +18,7 @@
         <tr>
             <td>{{ object.tradeName}}</td>
             <td>{{ object.reference}}</td>
+            <td>{{ object.type}}</td>
             <td>{{ object.cI}}</td>
             <td><a href="{{ path('ipez_product_update', {'id': object.id}) }}">
                     <span class="glyphicon glyphicon-pencil"></span></a> 

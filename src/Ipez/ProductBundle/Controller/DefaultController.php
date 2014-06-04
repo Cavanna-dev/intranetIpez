@@ -78,6 +78,17 @@ class DefaultController extends Controller
 
     public function updateAction($id)
     {
+        $types = array();
+        try {
+            $types = $this->getDoctrine()
+                    ->getRepository('IpezProductBundle:Type')
+                    ->findAll();
+        } catch (ORM\NoResultException $e) {
+            return $this->render('IpezProductBundle:Default:update.html.twig', array(
+                        'types' => $types
+            ));
+        }
+        
         $product = array();
         try {
             $product = $this->getDoctrine()
@@ -99,6 +110,7 @@ class DefaultController extends Controller
 
                 $product->setReference($this->get('request')->get('reference'))
                         ->setTradeName($this->get('request')->get('tradeName'))
+                        ->setType($this->get('request')->get('type'))
                         ->setCI($this->get('request')->get('cI'));
 
                 $em = $this->getDoctrine()->getManager();
@@ -109,7 +121,7 @@ class DefaultController extends Controller
         }
 
         return $this->render('IpezProductBundle:Default:update.html.twig', array(
-                    'product' => $product
+                    'product' => $product, 'types' => $types
         ));
     }
 
@@ -243,5 +255,4 @@ class DefaultController extends Controller
                     'features' => $features
         ));
     }
-
 }
