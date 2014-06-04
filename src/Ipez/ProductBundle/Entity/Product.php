@@ -143,4 +143,60 @@ class Product
         return $this;
     }
 
+    /**
+     * @var string
+     */
+    private $urlImg;
+
+    /**
+     * @var integer
+     */
+    private $salesParty;
+
+
+    /**
+     * Set urlImg
+     *
+     * @param string $urlImg
+     * @return Product
+     */
+    public function setUrlImg($urlImg)
+    {
+        $this->urlImg = $urlImg;
+
+        return $this;
+    }
+
+    /**
+     * Get urlImg
+     *
+     * @return string 
+     */
+    public function getUrlImg()
+    {
+        return $this->urlImg;
+    }
+
+    /**
+     * Set salesParty
+     *
+     * @param integer $salesParty
+     * @return Product
+     */
+    public function setSalesParty($salesParty)
+    {
+        $this->salesParty = $salesParty;
+
+        return $this;
+    }
+
+    /**
+     * Get salesParty
+     *
+     * @return integer 
+     */
+    public function getSalesParty()
+    {
+        return $this->salesParty;
+    }
 }

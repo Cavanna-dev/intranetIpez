@@ -19,14 +19,30 @@
         <tr>
             <td>{{ object.name }}</td>
             <td>{{ object.town }}</td>
-            <td>50</td>
-            <td>100</td>
+            <td>
+                {% set count = 0 %}
+                {% for part in participation %}
+                    {% if part.partyId == object.id and part.confirm == 0 %}
+                        {% set count = count + 1 %}
+                    {% endif %}
+                {% endfor %}
+                {{ count }}
+            </td>
+            <td>
+                {% set count = 0 %}
+                {% for part in participation %}
+                    {% if part.partyId == object.id and part.confirm == 1 %}
+                        {% set count = count + 1 %}
+                    {% endif %}
+                {% endfor %}
+                {{ count }}
+            </td>
             <td>{{ object.date | date('d/m/Y') }}</td>
             <td><a href="#">
                     <span class="glyphicon glyphicon-pencil"></span></a> 
                 <a href="#">
                     <span class="glyphicon glyphicon-edit"></span></a> 
-                <a href="#" 
+                <a href="{{ path('ipez_party_confirm', {'partyId': object.id}) }}" 
                    onclick="return(confirm('Etes-vous sûr de vouloir lancer les invitations?'));">
                     <span class="glyphicon glyphicon-envelope"></span></a>
                 <a href="{{ path('ipez_party_delete', {'id': object.id}) }}"

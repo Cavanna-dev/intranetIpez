@@ -9,3 +9,13 @@ ipez_party_create:
 ipez_party_delete:
     pattern:  /party/delete/{id}
     defaults: { _controller: IpezPartyBundle:Default:delete }
+    
+
+ipez_party_confirm:
+    pattern:  /party/confirm/{partyId}
+    defaults: { _controller: IpezPartyBundle:Default:sendConfirmationParty }
+
+ipez_party_confirmed:
+    pattern:  /party/confirmed/{partyId}/{userId}
+    defaults: { _controller: IpezPartyBundle:Default:userConfirmParty }
+    

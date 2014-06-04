@@ -15,4 +15,8 @@ Ipez\PartyBundle\Entity\Participation:
             type: date
         dateConfirm:
             type: date
+        userId:
+            type: integer
+        partyId:
+            type: integer
     lifecycleCallbacks: {  }

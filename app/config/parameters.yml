@@ -6,10 +6,10 @@ parameters:
     database_name: ipez
     database_user: root
     database_password: null
-    mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
+    mailer_transport: gmail
+    mailer_host: smtp.gmail.com
+    mailer_user: cavannachristophe@gmail.com
+    mailer_password: Cc12381321
     locale: en
     secret: aefgziongizg5453453ef453f4a3fa53f
     debug_toolbar: true

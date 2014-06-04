@@ -19,4 +19,9 @@ Ipez\ProductBundle\Entity\Product:
             type: integer
         type:
             type: integer
+        urlImg:
+            type: string
+            length: '60'
+        salesParty:
+            type: integer
     lifecycleCallbacks: {  }
