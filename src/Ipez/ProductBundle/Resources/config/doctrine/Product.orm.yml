@@ -17,4 +17,6 @@ Ipez\ProductBundle\Entity\Product:
             length: '60'
         cI:
             type: integer
+        type:
+            type: integer
     lifecycleCallbacks: {  }

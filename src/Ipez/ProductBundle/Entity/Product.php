@@ -37,14 +37,9 @@ class Product
     private $cI;
 
     /**
-     * @ORM\OneToMany(targetEntity="Feature", mappedBy="product", cascade={"persist", "remove"})
+     * @var integer
      */
-    protected $features;
-
-    public function __construct()
-    {
-        $this->features = new ArrayCollection();
-    }
+    private $type;
 
     /**
      * Get id
@@ -103,6 +98,16 @@ class Product
     }
 
     /**
+     * Get cI
+     *
+     * @return integer 
+     */
+    public function getCI()
+    {
+        return $this->cI;
+    }
+
+    /**
      * Set cI
      *
      * @param integer $cI
@@ -120,9 +125,9 @@ class Product
      *
      * @return integer 
      */
-    public function getCI()
+    public function getType()
     {
-        return $this->cI;
+        return $this->type;
     }
 
     /**
@@ -131,21 +136,11 @@ class Product
      * @param integer $cI
      * @return Product
      */
-    public function setFeature(Feature $feature)
+    public function setType($type)
     {
-        $this->features = $feature;
+        $this->type = $type;
 
         return $this;
-    }
-
-    /**
-     * Get cI
-     *
-     * @return integer 
-     */
-    public function getFeature()
-    {
-        return $this->features;
     }
 
 }

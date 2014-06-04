@@ -33,6 +33,17 @@ class DefaultController extends Controller
     {
         $product = new Product();
 
+        $types = array();
+        try {
+            $types = $this->getDoctrine()
+                    ->getRepository('IpezProductBundle:Type')
+                    ->findAll();
+        } catch (ORM\NoResultException $e) {
+            return $this->render('IpezProductBundle:Default:create.html.twig', array(
+                        'types' => $types
+            ));
+        }
+        
         $request = $this->getRequest();
 
         if ($request->getMethod() == 'POST')
@@ -44,6 +55,7 @@ class DefaultController extends Controller
 
                 $product->setReference($this->get('request')->get('reference'))
                         ->setTradeName($this->get('request')->get('tradeName'))
+                        ->setType($this->get('request')->get('type'))
                         ->setCI($this->get('request')->get('cI'));
 
                 $em = $this->getDoctrine()->getManager();
@@ -60,6 +72,7 @@ class DefaultController extends Controller
         }
 
         return $this->render('IpezProductBundle:Default:create.html.twig', array(
+            'types' => $types,
         ));
     }
 

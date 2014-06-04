@@ -1,0 +1,15 @@
+Ipez\ProductBundle\Entity\Type:
+    type: entity
+    table: null
+    repositoryClass: Ipez\ProductBundle\Entity\TypeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
