@@ -119,7 +119,7 @@ class Product
 
         return $this;
     }
-
+    
     /**
      * Get cI
      *
