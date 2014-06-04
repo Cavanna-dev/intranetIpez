@@ -48,9 +48,9 @@ class DefaultController extends Controller
 
         if ($request->getMethod() == 'POST')
         {
-            if ($this->get('request')->get('reference') !== null &&
-                    $this->get('request')->get('tradeName') !== null &&
-                    $this->get('request')->get('cI') !== null)
+            if ($this->get('request')->get('reference') !== '' &&
+                    $this->get('request')->get('tradeName') !== '' &&
+                    $this->get('request')->get('cI') !== '')
             {
 
                 $product->setReference($this->get('request')->get('reference'))
@@ -103,9 +103,9 @@ class DefaultController extends Controller
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST')
         {
-            if ($this->get('request')->get('reference') !== null &&
-                    $this->get('request')->get('tradeName') !== null &&
-                    $this->get('request')->get('cI') !== null)
+            if ($this->get('request')->get('reference') !== '' &&
+                    $this->get('request')->get('tradeName') !== '' &&
+                    $this->get('request')->get('cI') !== '')
             {
 
                 $product->setReference($this->get('request')->get('reference'))
@@ -180,8 +180,8 @@ class DefaultController extends Controller
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST')
         {
-            if ($this->get('request')->get('featureName') !== null &&
-                    $this->get('request')->get('featureValue') !== null)
+            if ($this->get('request')->get('featureName') !== '' &&
+                    $this->get('request')->get('featureValue') !== '')
             {
 
                 $feature->setNameFeature($this->get('request')->get('featureName'))

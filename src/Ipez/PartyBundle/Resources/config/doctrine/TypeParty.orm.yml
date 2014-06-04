@@ -1,0 +1,16 @@
+Ipez\PartyBundle\Entity\TypeParty:
+    type: entity
+    table: null
+    repositoryClass: Ipez\PartyBundle\Entity\TypePartyRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        partyId:
+            type: integer
+        typeId:
+            type: integer
+    lifecycleCallbacks: {  }

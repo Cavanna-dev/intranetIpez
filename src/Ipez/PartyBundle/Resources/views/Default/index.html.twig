@@ -2,7 +2,7 @@
 {% block title %}Module Evenement{% endblock %}
 
 {% block body %}
-<h2>Les Evenements</h2> <a href="#"><button type="button" class="btn btn-primary">Créer un Evénement</button></a>
+<h2>Les Evenements</h2> <a href="{{ path('ipez_party_create') }}"><button type="button" class="btn btn-primary">Créer un Evénement</button></a>
 <table class="table table-striped table-hover ">
     <thead>
         <tr>
@@ -29,8 +29,8 @@
                 <a href="#" 
                    onclick="return(confirm('Etes-vous sûr de vouloir lancer les invitations?'));">
                     <span class="glyphicon glyphicon-envelope"></span></a>
-                <a href="#" 
-                   onclick="return(confirm('Etes-vous sûr de vouloir supprimer ce produit?'));">
+                <a href="{{ path('ipez_party_delete', {'id': object.id}) }}"
+                   onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette évènement ?'));">
                     <span class="glyphicon glyphicon-trash"></span></a> 
             </td>
         </tr>

@@ -125,9 +125,9 @@ class Party
      * @param integer $postal
      * @return Party
      */
-    public function setPostal($postal)
+    public function setCp($cp)
     {
-        $this->postal = $postal;
+        $this->cp = $cp;
 
         return $this;
     }
@@ -137,9 +137,9 @@ class Party
      *
      * @return integer 
      */
-    public function getPostal()
+    public function getCp()
     {
-        return $this->postal;
+        return $this->cp;
     }
 
     /**
