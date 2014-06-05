@@ -14,6 +14,7 @@ class DefaultController extends Controller
     {
         header('Access-Control-Allow-Methods: GET, POST');
         header('Access-Control-Max-Age: 1000');
+        header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 
         $request = $this->getRequest();
@@ -34,13 +35,13 @@ class DefaultController extends Controller
             if (count($val) > 0)
             {
 
-                $response = new JsonResponse(array(
-                    'error' => 'Vous vous êtes déjà inscrit à la newsletter.'
-                ));
+//                $response = new JsonResponse(array(
+//                    'error' => 'Vous vous êtes déjà inscrit à la newsletter.'
+//                ));
+//
+//                $response->headers->set('Content-Type', 'application/json');
 
-                $response->headers->set('Content-Type', 'application/json');
-
-                return $response;
+                return 0;
             }
 
             try {
@@ -51,14 +52,16 @@ class DefaultController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($newsletter);
                 $em->flush();
-
+        
                 $message = array(
                     'success' => "Enregistrement de l'enquête validé."
                 );
             } catch (Doctrine\ORM\ORMException $e) {
-                $message = array(
-                    'error' => 'Impossible d\'enregistrer les données. Données doctrine invalides.'
-                );
+//                $message = array(
+//                    'error' => 'Impossible d\'enregistrer les données. Données doctrine invalides.'
+//                );
+                
+                return 2;
             }
         } else
         {
@@ -109,5 +112,4 @@ class DefaultController extends Controller
         return $response;
         
     }
-
 }
