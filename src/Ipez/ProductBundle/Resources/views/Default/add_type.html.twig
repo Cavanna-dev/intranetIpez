@@ -1,0 +1,37 @@
+{% extends "::base.html.twig" %}
+{% block title %}Creation Type - Module Produit{% endblock %}
+
+{% block body %}
+<form action="{{ path('ipez_product_type_create') }}" method="post" class="form-horizontal jumbotron">
+    <fieldset>
+        <legend><h2>Les Types</h2></legend>
+        <div class="form-group">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nom Type</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for object in types %}
+                    <tr>
+                        <td>{{ object.name }}</td>
+                        <td><a  href="{{ path('ipez_product_type_delete', {'id': object.id}) }}" 
+                                onclick="return(confirm('Etes-vous sûr de vouloir supprimer ce type?'));">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td><input type="text" class="form-control" name="name" id="inputName" placeholder="Nom type"></td>
+                      <td><button type="submit" class="btn btn-primary">Ajouter</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </fieldset>
+</form>
+{% endblock %}

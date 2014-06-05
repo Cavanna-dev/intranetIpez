@@ -4,6 +4,7 @@ namespace Ipez\ProductBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ipez\ProductBundle\Entity\Product;
+use Ipez\ProductBundle\Entity\Type;
 use Ipez\ProductBundle\Entity\Feature;
 use Doctrine\ORM;
 
@@ -207,13 +208,28 @@ class DefaultController extends Controller
                         ->setValue($this->get('request')->get('featureValue'))
                         ->setProductId($id);
 
-                $product->setFeature($feature);
+                
 
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($product);
                 $em->persist($feature);
                 $em->flush();
 
+                $product = array();
+                $features = array();
+                try {
+                    $product = $this->getDoctrine()
+                            ->getRepository('IpezProductBundle:Product')
+                            ->find($id);
+
+                    $features = $this->getDoctrine()
+                            ->getRepository('IpezProductBundle:Feature')
+                            ->findAll();
+                } catch (ORM\NoResultException $e) {
+                    return $this->render('IpezProductBundle:Default:index.html.twig', array(
+                                'product' => $product,
+                                'features' => $features,
+                    ));
+                }
                 return $this->render(
                                 'IpezProductBundle:Default:add_feature.html.twig', array(
                             'id' => $id,
@@ -272,6 +288,96 @@ class DefaultController extends Controller
                     'id' => $request = $this->getRequest()->get('idProduct'),
                     'product' => $product,
                     'features' => $features
+        ));
+    }
+    
+    public function addTypeAction()
+    {
+        $type= new Type();
+
+        $types = array();
+        try {
+            $types = $this->getDoctrine()
+                    ->getRepository('IpezProductBundle:Type')
+                    ->findAll();
+        } catch (ORM\NoResultException $e) {
+            return $this->render('IpezProductBundle:Default:index.html.twig', array(
+                        'types' => $types
+            ));
+        }
+
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST')
+        {
+            if ($this->get('request')->get('name') !== '')
+            {
+
+                $type->setName($this->get('request')->get('name'));
+
+                
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($type);
+                $em->flush();
+                
+                $types = array();
+                try {
+                    $types = $this->getDoctrine()
+                            ->getRepository('IpezProductBundle:Type')
+                            ->findAll();
+                } catch (ORM\NoResultException $e) {
+                    return $this->render('IpezProductBundle:Default:index.html.twig', array(
+                                'types' => $types
+                    ));
+                }
+                
+
+                return $this->render(
+                       'IpezProductBundle:Default:add_type.html.twig', array(
+                       'types' => $types
+                       )
+                );
+            }
+        }
+       
+       return $this->render('IpezProductBundle:Default:add_type.html.twig', array(
+                 'types' => $types
+       ));
+        
+    }
+    
+    public function delTypeAction($id)
+    {
+        $type= new Type();
+
+        $types = array();
+        try {
+            $types = $this->getDoctrine()
+                    ->getRepository('IpezProductBundle:Type')
+                    ->findAll();
+        } catch (ORM\NoResultException $e) {
+            return $this->render('IpezProductBundle:Default:index.html.twig', array(
+                        'types' => $types
+            ));
+        }
+
+        try {
+            $type = $this->getDoctrine()
+                    ->getRepository('IpezProductBundle:Type')
+                    ->find($id);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($type);
+            $em->flush();
+        } catch (ORM\NoResultException $ex) {
+            echo "alert('Aucun type trouvée')";
+            return $this->render('IpezProductBundle:Default:add_type.html.twig', array(
+                        'features' => $features
+            ));
+        }
+
+        return $this->forward('IpezProductBundle:Default:addType', array(
+                    'types' => $types
         ));
     }
 }

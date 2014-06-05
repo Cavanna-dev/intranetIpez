@@ -25,3 +25,12 @@ ipez_product_add_feature:
 ipez_product_del_feature:
     pattern:  /product/del/feature/{id}
     defaults: { _controller: IpezProductBundle:Default:delFeature }
+    
+    
+ipez_product_type_create:
+    pattern:  /product/type
+    defaults: { _controller: IpezProductBundle:Default:addType}
+    
+ipez_product_type_delete:
+    pattern:  /product/type/{id}
+    defaults: { _controller: IpezProductBundle:Default:delType}
