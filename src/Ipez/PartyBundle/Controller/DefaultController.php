@@ -101,6 +101,49 @@ class DefaultController extends Controller
         return $this->redirect($this->generateUrl('ipez_party_homepage'));
     }
 
+    public function updateAction($id)
+    {
+        $party = array();
+        try {
+            $party = $this->getDoctrine()
+                    ->getRepository('IpezPartyBundle:Party')
+                    ->find($id);
+        } catch (ORM\NoResultException $e) {
+            return $this->render('IpezPartyBundle:Default:update.html.twig', array(
+                        'party' => $party
+            ));
+        }
+
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST')
+        {
+            if ($this->get('request')->get('name') !== '' &&
+                    $this->get('request')->get('address') !== '' &&
+                    $this->get('request')->get('town') !== '' &&
+                    $this->get('request')->get('cp') !== '' &&
+                    $this->get('request')->get('date') !== '')
+            {
+                $date = explode('/', $this->get('request')->get('date'));
+                $get = $date[1].'/'.$date[0].'/'.$date[2];
+
+                $party->setName($this->get('request')->get('name'))
+                        ->setAddress($this->get('request')->get('address'))
+                        ->setTown($this->get('request')->get('town'))
+                        ->setCp($this->get('request')->get('cp'))
+                        ->setDate(new \DateTime($get));
+
+                $em = $this->getDoctrine()->getManager();
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('ipez_party_homepage'));
+            }
+        }
+
+        return $this->render('IpezPartyBundle:Default:update.html.twig', array(
+                    'party' => $party
+        ));
+    }
+    
     public function sendConfirmationPartyAction($partyId)
     {
         try {

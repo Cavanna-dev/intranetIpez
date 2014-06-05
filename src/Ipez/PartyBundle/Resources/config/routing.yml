@@ -5,6 +5,11 @@ ipez_party_homepage:
 ipez_party_create:
     pattern:  /party/new
     defaults: { _controller: IpezPartyBundle:Default:create }
+    
+ipez_party_update:
+    pattern:  /party/update/{id}
+    defaults: { _controller: IpezPartyBundle:Default:update }
+
 
 ipez_party_delete:
     pattern:  /party/delete/{id}

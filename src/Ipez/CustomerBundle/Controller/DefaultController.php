@@ -46,16 +46,16 @@ class DefaultController extends Controller
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST')
         {
-            if ($this->get('request')->get('name') !== null &&
-                    $this->get('request')->get('firstName') !== null &&
-                    $this->get('request')->get('mail') !== null &&
-                    $this->get('request')->get('number') !== null &&
-                    $this->get('request')->get('numberGsm') !== null &&
-                    $this->get('request')->get('address') !== null &&
-                    $this->get('request')->get('town') !== null &&
-                    $this->get('request')->get('cp') !== null &&
-                    $this->get('request')->get('dateBirth') !== null &&
-                    $this->get('request')->get('isActive') !== null)
+            if ($this->get('request')->get('name') !== '' &&
+                    $this->get('request')->get('firstName') !== '' &&
+                    $this->get('request')->get('mail') !== '' &&
+                    $this->get('request')->get('number') !== '' &&
+                    $this->get('request')->get('numberGsm') !== '' &&
+                    $this->get('request')->get('address') !== '' &&
+                    $this->get('request')->get('town') !== '' &&
+                    $this->get('request')->get('cp') !== '' &&
+                    $this->get('request')->get('dateBirth') !== '' &&
+                    $this->get('request')->get('isActive') !== '')
             {
                 $date = explode('/', $this->get('request')->get('dateBirth'));
                 $get = $date[1].'/'.$date[0].'/'.$date[2];

@@ -38,10 +38,8 @@
                 {{ count }}
             </td>
             <td>{{ object.date | date('d/m/Y') }}</td>
-            <td><a href="#">
-                    <span class="glyphicon glyphicon-pencil"></span></a> 
-                <a href="#">
-                    <span class="glyphicon glyphicon-edit"></span></a> 
+            <td><a href="{{ path('ipez_party_update', {'id': object.id}) }}">
+                    <span class="glyphicon glyphicon-pencil"></span></a>
                 <a href="{{ path('ipez_party_confirm', {'partyId': object.id}) }}" 
                    onclick="return(confirm('Etes-vous sûr de vouloir lancer les invitations?'));">
                     <span class="glyphicon glyphicon-envelope"></span></a>
