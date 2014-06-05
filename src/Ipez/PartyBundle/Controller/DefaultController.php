@@ -45,6 +45,7 @@ class DefaultController extends Controller
                     $this->get('request')->get('address') !== '' &&
                     $this->get('request')->get('cp') !== '' &&
                     $this->get('request')->get('town') !== '' &&
+                    $this->get('request')->get('nbParticipant') !== '' &&
                     $this->get('request')->get('date') !== '')
             {
                 $date = explode('/', $this->get('request')->get('date'));
@@ -53,6 +54,7 @@ class DefaultController extends Controller
                 $party->setName($this->get('request')->get('name'))
                         ->setAddress($this->get('request')->get('address'))
                         ->setTown($this->get('request')->get('town'))
+                        ->setNbParticipant($this->get('request')->get('nbParticipant'))
                         ->setCp($this->get('request')->get('cp'))
                         ->setDate(new \DateTime($get));
 
@@ -121,6 +123,7 @@ class DefaultController extends Controller
                     $this->get('request')->get('address') !== '' &&
                     $this->get('request')->get('town') !== '' &&
                     $this->get('request')->get('cp') !== '' &&
+                    $this->get('request')->get('nbParticipant') !== '' &&
                     $this->get('request')->get('date') !== '')
             {
                 $date = explode('/', $this->get('request')->get('date'));
@@ -129,6 +132,7 @@ class DefaultController extends Controller
                 $party->setName($this->get('request')->get('name'))
                         ->setAddress($this->get('request')->get('address'))
                         ->setTown($this->get('request')->get('town'))
+                        ->setNbParticipant($this->get('request')->get('nbParticipant'))
                         ->setCp($this->get('request')->get('cp'))
                         ->setDate(new \DateTime($get));
 

@@ -22,4 +22,6 @@ Ipez\PartyBundle\Entity\Party:
             type: integer
         date:
             type: date
+        nbParticipant:
+            type: integer
     lifecycleCallbacks: {  }

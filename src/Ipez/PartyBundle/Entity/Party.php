@@ -164,4 +164,32 @@ class Party
     {
         return $this->date;
     }
+    /**
+     * @var integer
+     */
+    private $nbParticipant;
+
+
+    /**
+     * Set nbParticipant
+     *
+     * @param integer $nbParticipant
+     * @return Party
+     */
+    public function setNbParticipant($nbParticipant)
+    {
+        $this->nbParticipant = $nbParticipant;
+
+        return $this;
+    }
+
+    /**
+     * Get nbParticipant
+     *
+     * @return integer 
+     */
+    public function getNbParticipant()
+    {
+        return $this->nbParticipant;
+    }
 }
