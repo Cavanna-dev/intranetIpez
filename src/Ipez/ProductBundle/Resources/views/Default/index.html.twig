@@ -9,7 +9,8 @@
             <th>Nom Commercial</th>
             <th>Référence</th>
             <th>Catégorie</th>
-            <th>Stock</th>            
+            <th>Stock</th>
+            <th>Top Ventes</th> 
             <th>Action</th>
         </tr>
     </thead>
@@ -18,8 +19,21 @@
         <tr>
             <td>{{ object.tradeName}}</td>
             <td>{{ object.reference}}</td>
-            <td>{{ object.type}}</td>
+            <td>    
+                {% for value in types %}
+                    {% if (object.type == value.id) %}
+                        {{ value.name }}
+                    {% endif %}
+                {% endfor %}
+            </td>
             <td>{{ object.cI}}</td>
+            {% if ( object.salesParty == 2) %}
+                     <td>Top</td>
+            {% elseif ( object.salesParty == 1) %}
+                     <td>Oui</td>
+            {% else %}
+                     <td>Non</td>                  
+            {% endif %} 
             <td><a href="{{ path('ipez_product_update', {'id': object.id}) }}">
                     <span class="glyphicon glyphicon-pencil"></span></a> 
                 <a href="{{ path('ipez_product_add_feature', {'id': object.id}) }}">

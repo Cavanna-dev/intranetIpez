@@ -12,6 +12,17 @@ class DefaultController extends Controller
 
     public function indexAction()
     {
+        $types = array();
+        try {
+            $types = $this->getDoctrine()
+                    ->getRepository('IpezProductBundle:Type')
+                    ->findAll();
+        } catch (ORM\NoResultException $e) {
+            return $this->render('IpezProductBundle:Default:update.html.twig', array(
+                        'types' => $types
+            ));
+        }
+        
         $products = array();
 
         try {
@@ -25,7 +36,7 @@ class DefaultController extends Controller
         }
 
         return $this->render('IpezProductBundle:Default:index.html.twig', array(
-                    'products' => $products
+                    'products' => $products, 'types' => $types
         ));
     }
 
@@ -50,12 +61,16 @@ class DefaultController extends Controller
         {
             if ($this->get('request')->get('reference') !== '' &&
                     $this->get('request')->get('tradeName') !== '' &&
+                    $this->get('request')->get('urlImg') !== '' &&
+                    $this->get('request')->get('salesParty') !== '' &&
                     $this->get('request')->get('cI') !== '')
             {
 
                 $product->setReference($this->get('request')->get('reference'))
                         ->setTradeName($this->get('request')->get('tradeName'))
                         ->setType($this->get('request')->get('type'))
+                        ->setUrlImg($this->get('request')->get('urlImg'))
+                        ->setSalesParty($this->get('request')->get('salesParty'))
                         ->setCI($this->get('request')->get('cI'));
 
                 $em = $this->getDoctrine()->getManager();
@@ -105,12 +120,16 @@ class DefaultController extends Controller
         {
             if ($this->get('request')->get('reference') !== '' &&
                     $this->get('request')->get('tradeName') !== '' &&
+                    $this->get('request')->get('urlImg') !== '' &&
+                    $this->get('request')->get('salesParty') !== '' &&
                     $this->get('request')->get('cI') !== '')
             {
 
                 $product->setReference($this->get('request')->get('reference'))
                         ->setTradeName($this->get('request')->get('tradeName'))
                         ->setType($this->get('request')->get('type'))
+                        ->setUrlImg($this->get('request')->get('urlImg'))
+                        ->setSalesParty($this->get('request')->get('salesParty'))
                         ->setCI($this->get('request')->get('cI'));
 
                 $em = $this->getDoctrine()->getManager();
