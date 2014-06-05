@@ -8,8 +8,9 @@
         <tr>
             <th>Nom Evenement</th>
             <th>Lieu</th>
-            <th>Nombre Demande</th>
-            <th>Participant</th>
+            <th>Nombre d'invitation</th>
+            <th>Nombre demande envoyé</th>
+            <th>Participant confirmé</th>
             <th>Date</th>
             <th>Action</th>
         </tr>
@@ -19,6 +20,7 @@
         <tr>
             <td>{{ object.name }}</td>
             <td>{{ object.town }}</td>
+            <td>{{ object.nbParticipant }}</td>
             <td>
                 {% set count = 0 %}
                 {% for part in participation %}
