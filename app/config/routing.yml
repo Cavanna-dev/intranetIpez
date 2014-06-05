@@ -1,3 +1,7 @@
+ipez_web_service:
+    resource: "@IpezWebServiceBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ipez_party:
     resource: "@IpezPartyBundle/Resources/config/routing.yml"
     prefix:   /

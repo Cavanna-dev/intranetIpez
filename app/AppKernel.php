@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Ipez\ProductBundle\IpezProductBundle(),
             new Ipez\CustomerBundle\IpezCustomerBundle(),
             new Ipez\PartyBundle\IpezPartyBundle(),
+            new Ipez\WebServiceBundle\IpezWebServiceBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

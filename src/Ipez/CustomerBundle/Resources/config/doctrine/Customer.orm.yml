@@ -34,6 +34,8 @@ Ipez\CustomerBundle\Entity\Customer:
             type: integer
         dateBirth:
             type: date
+        isNewsletter:
+            type: boolean
         isActive:
             type: boolean
     lifecycleCallbacks: {  }

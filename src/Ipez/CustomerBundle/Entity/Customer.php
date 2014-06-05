@@ -304,4 +304,32 @@ class Customer
     {
         return $this->isActive;
     }
+    /**
+     * @var boolean
+     */
+    private $isNewsletter;
+
+
+    /**
+     * Set isNewsletter
+     *
+     * @param boolean $isNewsletter
+     * @return Customer
+     */
+    public function setIsNewsletter($isNewsletter)
+    {
+        $this->isNewsletter = $isNewsletter;
+
+        return $this;
+    }
+
+    /**
+     * Get isNewsletter
+     *
+     * @return boolean 
+     */
+    public function getIsNewsletter()
+    {
+        return $this->isNewsletter;
+    }
 }
