@@ -192,4 +192,32 @@ class Party
     {
         return $this->nbParticipant;
     }
+    /**
+     * @var integer
+     */
+    private $isActive;
+
+
+    /**
+     * Set isActive
+     *
+     * @param integer $isActive
+     * @return Party
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return integer 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
 }

@@ -46,17 +46,19 @@ class DefaultController extends Controller
                     $this->get('request')->get('cp') !== '' &&
                     $this->get('request')->get('town') !== '' &&
                     $this->get('request')->get('nbParticipant') !== '' &&
+                    $this->get('request')->get('isActive') !== '' &&
                     $this->get('request')->get('date') !== '')
             {
-                $date = explode('/', $this->get('request')->get('date'));
-                $get = $date[1] . '/' . $date[0] . '/' . $date[2];
+                // $date = explode('/', $this->get('request')->get('date'));
+                // $get = $date[1] . '/' . $date[0] . '/' . $date[2];
 
                 $party->setName($this->get('request')->get('name'))
                         ->setAddress($this->get('request')->get('address'))
                         ->setTown($this->get('request')->get('town'))
                         ->setNbParticipant($this->get('request')->get('nbParticipant'))
+                        ->setIsActive($this->get('request')->get('isActive'))
                         ->setCp($this->get('request')->get('cp'))
-                        ->setDate(new \DateTime($get));
+                        ->setDate(new \DateTime($this->get('request')->get('date')));
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($party);
@@ -124,6 +126,7 @@ class DefaultController extends Controller
                     $this->get('request')->get('town') !== '' &&
                     $this->get('request')->get('cp') !== '' &&
                     $this->get('request')->get('nbParticipant') !== '' &&
+                    $this->get('request')->get('isActive') !== '' &&
                     $this->get('request')->get('date') !== '')
             {
                 $date = explode('/', $this->get('request')->get('date'));
@@ -133,6 +136,7 @@ class DefaultController extends Controller
                         ->setAddress($this->get('request')->get('address'))
                         ->setTown($this->get('request')->get('town'))
                         ->setNbParticipant($this->get('request')->get('nbParticipant'))
+                        ->setIsActive($this->get('request')->get('isActive'))
                         ->setCp($this->get('request')->get('cp'))
                         ->setDate(new \DateTime($get));
 

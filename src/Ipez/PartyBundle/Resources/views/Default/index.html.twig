@@ -12,6 +12,7 @@
             <th>Nombre demande envoyé</th>
             <th>Participant confirmé</th>
             <th>Date</th>
+            <th>Actif</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -40,6 +41,11 @@
                 {{ count }}
             </td>
             <td>{{ object.date | date('d/m/Y') }}</td>
+            {% if ( object.isActive == 1) %}
+                     <td>Oui</td>
+            {% else %}
+                     <td>Non</td>                  
+            {% endif %} 
             <td><a href="{{ path('ipez_party_update', {'id': object.id}) }}">
                     <span class="glyphicon glyphicon-pencil"></span></a>
                 <a href="{{ path('ipez_party_confirm', {'partyId': object.id}) }}" 

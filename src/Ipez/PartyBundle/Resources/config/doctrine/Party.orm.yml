@@ -24,4 +24,6 @@ Ipez\PartyBundle\Entity\Party:
             type: date
         nbParticipant:
             type: integer
+        isActive:
+            type: integer
     lifecycleCallbacks: {  }
