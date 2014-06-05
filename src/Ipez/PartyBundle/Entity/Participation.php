@@ -135,7 +135,7 @@ class Participation
     /**
      * Get dateConfirm
      *
-     * @return \DateTime 
+     * @return integer
      */
     public function getUserId()
     {

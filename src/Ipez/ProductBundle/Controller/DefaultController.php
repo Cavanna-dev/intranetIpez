@@ -19,7 +19,7 @@ class DefaultController extends Controller
                     ->getRepository('IpezProductBundle:Type')
                     ->findAll();
         } catch (ORM\NoResultException $e) {
-            return $this->render('IpezProductBundle:Default:update.html.twig', array(
+            return $this->render('IpezProductBundle:Default:index.html.twig', array(
                         'types' => $types
             ));
         }
@@ -37,7 +37,8 @@ class DefaultController extends Controller
         }
 
         return $this->render('IpezProductBundle:Default:index.html.twig', array(
-                    'products' => $products, 'types' => $types
+                    'products' => $products,
+                    'types'    => $types
         ));
     }
 

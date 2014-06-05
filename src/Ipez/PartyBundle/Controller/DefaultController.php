@@ -3,8 +3,10 @@
 namespace Ipez\PartyBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM;
 use Ipez\PartyBundle\Entity\Party;
+use Ipez\CustomerBundle\Entity\Customer;
 
 class DefaultController extends Controller
 {
@@ -22,13 +24,13 @@ class DefaultController extends Controller
                     ->findAll();
         } catch (ORM\NoResultException $e) {
             return $this->render('IpezPartyBundle:Default:index.html.twig', array(
-                    'parties' => $parties
+                        'parties' => $parties
             ));
         }
 
         return $this->render('IpezPartyBundle:Default:index.html.twig', array(
-                'parties' => $parties,
-                'participation' => $participation,
+                    'parties' => $parties,
+                    'participation' => $participation,
         ));
     }
 
@@ -86,12 +88,13 @@ class DefaultController extends Controller
             $typePartys = $this->getDoctrine()
                     ->getRepository('IpezPartyBundle:TypeParty')
                     ->findBy(array(
-            'partyId' => $id
+                'partyId' => $id
             ));
 
             $em = $this->getDoctrine()->getManager();
 
-            foreach ($typePartys as $object) {
+            foreach ($typePartys as $object)
+            {
                 $em->remove($object);
             }
 
@@ -130,7 +133,7 @@ class DefaultController extends Controller
                     $this->get('request')->get('date') !== '')
             {
                 $date = explode('/', $this->get('request')->get('date'));
-                $get = $date[1].'/'.$date[0].'/'.$date[2];
+                $get = $date[1] . '/' . $date[0] . '/' . $date[2];
 
                 $party->setName($this->get('request')->get('name'))
                         ->setAddress($this->get('request')->get('address'))
@@ -151,39 +154,67 @@ class DefaultController extends Controller
                     'party' => $party
         ));
     }
-    
+
     public function sendConfirmationPartyAction($partyId)
     {
         try {
             $participations = $this->getDoctrine()
                     ->getRepository('IpezPartyBundle:Participation')
                     ->findBy(array(
-            'partyId' => $partyId,
-            'confirm' => 0
+                'partyId' => $partyId,
+                'confirm' => 0
             ));
+
             $party = $this->getDoctrine()
                     ->getRepository('IpezPartyBundle:Party')
                     ->find(array(
-            'id' => $partyId
+                'id' => $partyId
             ));
 
-            foreach ($participations as $value) {
-                $user = $this->getDoctrine()
-                        ->getRepository('IpezCustomerBundle:Customer')
-                        ->find(array(
-                'id' => $value->getUserId()
-                ));
+            $users = array();
+            foreach ($participations as $value)
+            {
+                $users[] = $value->getUserId();
+            }
 
+            $usersSelected = array_rand($users, $party->getNbParticipant());
+            
+            for($i= 0 ; $i < $party->getNbParticipant() ; $i++)
+            {
+                try {
+                    $user = $this->getDoctrine()
+                            ->getRepository('IpezCustomerBundle:Customer')
+                            ->findOneBy(array(
+                        'id' => $users[$usersSelected[$i]]
+                    ));
+                } catch (Doctrine\ORM\NoResultException $ex) {
+                    $response = new JsonResponse(array(
+                        'error' => 'Aucun résultat.'
+                    ));
+                    return $response;
+                }
+                
                 $message = \Swift_Message::newInstance()
                         ->setSubject('Confirmation Inscription Evenement : ' . $party->getName())
                         ->setFrom('cavannachristophe@gmail.com')
                         ->setTo($user->getMail())
-                        ->setBody('Confirmer votre inscription ici => : http://localhost/intranetIpez/web/app_dev.php/party/confirmed/'.$party->getId().'/'.$user->getId())
+                        ->setBody('Confirmer votre inscription ici => : http://localhost/intranetIpez/web/app_dev.php/party/confirmed/' . $party->getId() . '/' . $user->getId())
                 ;
                 $this->get('mailer')->send($message);
-            
-            $value->setDateInvit(new \DateTime());
-            
+
+                try {
+                    $parti = $this->getDoctrine()
+                            ->getRepository('IpezPartyBundle:Participation')
+                            ->findOneBy(array(
+                        'userId' => $user->getId()
+                    ));
+                } catch (Doctrine\ORM\NoResultException $ex) {
+                    $response = new JsonResponse(array(
+                        'error' => 'Aucune participation pour cet evenement.'
+                    ));
+                    return $response;
+                }
+                $parti->setDateInvit(new \DateTime());
             }
         } catch (ORM\NoResultException $ex) {
             echo "alert('Aucun produit trouvé')";
@@ -200,22 +231,21 @@ class DefaultController extends Controller
             $participation = $this->getDoctrine()
                     ->getRepository('IpezPartyBundle:Participation')
                     ->findOneBy(array(
-            'partyId' => $partyId,
-            'userId' => $userId
+                'partyId' => $partyId,
+                'userId' => $userId
             ));
-            
+
             $participation->setConfirm(1);
             $participation->setDateConfirm(new \DateTime());
-            
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($participation);
             $em->flush();
-            
         } catch (ORM\NoResultException $ex) {
             echo "alert('Aucun produit trouvé')";
             return $this->redirect($this->generateUrl('ipez_party_homepage'));
         }
-        
+
         return $this->redirect($this->generateUrl('ipez_party_homepage'));
     }
 

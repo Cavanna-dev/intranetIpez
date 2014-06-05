@@ -73,7 +73,7 @@ class DefaultController extends Controller
 
         $response->headers->set('Content-Type', 'application/json');
 
-        return $response;
+        return "1";
     }
     
     public function productsDataAction(){

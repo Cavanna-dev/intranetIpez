@@ -17,3 +17,7 @@ ipez_customer_update:
 ipez_customer_delete:
     pattern:  /customer/delete/{id}
     defaults: { _controller: IpezCustomerBundle:Default:delete }
+
+ipez_customer_export:
+    pattern:  /customer/export
+    defaults: { _controller: IpezCustomerBundle:Default:export }
